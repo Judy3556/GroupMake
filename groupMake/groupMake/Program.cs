@@ -22,14 +22,20 @@ namespace groupMake
             // 確定分組方式
             Console.WriteLine();
             Console.WriteLine(" 班上同學隨機分組系統");
-            Console.WriteLine("請輸入每組人數");
+            Console.WriteLine("請輸入組別數");
+
+            // 定義每組人數
             int Number = int.Parse(Console.ReadLine());
 
+            //定義廻圈執行次數
             int j = 1;
-            
-            // 把所有的名字放入List
 
+            // 亂數產生
+            Random rand = new Random();
+
+            // 把所有的名字放入List
             List<string> numbers = new List<string>();
+
             if (Number < 2 || Number > 10)
             {
                 Console.WriteLine("拒絕執行");
@@ -42,20 +48,28 @@ namespace groupMake
                     numbers.Add(name[i]);
                 }
             }
-            Random rand = new Random();
+
+
+
+            // 定義組數
             int teamNumber = numbers.Count / Number;
+
+            // 定義多出來的人數
             int noGroup = numbers.Count % Number;
+
+            // 定義另一個多出來的人數
             int nogroup = noGroup;
 
             while (j <= teamNumber)
             {
+                Console.WriteLine("第"+j+"組的人有");
+
                 for (int i = 0; i <teamNumber; i++)
                 {
-                    if (noGroup > 0&&nogroup==noGroup)
+                    if (noGroup > 0 && nogroup==noGroup)
                     {
                         int r = rand.Next(0, numbers.Count);
                         Console.WriteLine(" " + numbers[r] + " ");
-
 
                         //刪除選出
                         numbers.RemoveAt(r);
@@ -66,11 +80,10 @@ namespace groupMake
                     numbers.RemoveAt(n);
                 }
                 nogroup--;
-                Console.WriteLine();
+                Console.WriteLine("");
                 j++;
             }
-            Console.WriteLine();
-            Console.Read();
+            Console.ReadLine();
 
         }
     }
